@@ -1,10 +1,43 @@
-package main.java;
-
 import java.util.concurrent.TimeUnit;
+
+import static java.lang.Thread.sleep;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {
-        manyActionsInThreads();
+        synchronizedMethod();
+    }
+
+    static void synchronizedMethod(){
+        Thread thread1 = new Thread() {
+            @Override
+            public void run() {
+                do {
+                    print(this.getName());
+                } while (true);
+            }
+        };
+
+        Thread thread2 = new Thread() {
+            @Override
+            public void run() {
+                do {
+                    print(this.getName());
+                } while (true);
+            }
+        };
+
+        thread1.start();
+        thread2.start();
+
+    }
+
+    static synchronized void print(String threadName){
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Это поток "+threadName);
     }
 
     static void manyActionsInThreads() throws InterruptedException {
@@ -36,12 +69,10 @@ public class Main {
             }
         };
 
-        thread1.setPriority(Thread.MAX_PRIORITY);
-        thread2.setPriority(Thread.MIN_PRIORITY);
         thread1.start();
         thread2.start();
 
-        Thread.sleep(TimeUnit.SECONDS.toMillis(3));
+        sleep(TimeUnit.SECONDS.toMillis(3));
         thread1.interrupt();
         thread2.interrupt();
 
@@ -101,7 +132,7 @@ public class Main {
         };
 
         thread1.start();
-        Thread.sleep(TimeUnit.SECONDS.toMillis(3));
+        sleep(TimeUnit.SECONDS.toMillis(3));
         thread1.interrupt();
     }
 }
