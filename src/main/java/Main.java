@@ -7,7 +7,7 @@ public class Main {
         synchronizedMethod();
     }
 
-    static void synchronizedMethod(){
+    static void synchronizedMethod() {
         Thread thread1 = new Thread() {
             @Override
             public void run() {
@@ -31,13 +31,13 @@ public class Main {
 
     }
 
-    static synchronized void print(String threadName){
+    static synchronized void print(String threadName) {
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println("Это поток "+threadName);
+        System.out.println("Это поток " + threadName);
     }
 
     static void manyActionsInThreads() throws InterruptedException {
@@ -78,7 +78,7 @@ public class Main {
 
     }
 
-    static void simpleJoin(){
+    static void simpleJoin() {
         Thread thread1 = new Thread() {
             @Override
             public void run() {
@@ -86,7 +86,6 @@ public class Main {
             }
         };
         Thread thread = new Thread(new Runnable() {
-            @Override
             public void run() {
                 System.out.println("Поток созданный через интерфейс запустился");
             }
@@ -100,7 +99,7 @@ public class Main {
         thread.start();
     }
 
-    static void simpleThread(){
+    static void simpleThread() {
         Thread thread1 = new Thread() {
             @Override
             public void run() {
@@ -113,7 +112,6 @@ public class Main {
 
     static void simpleRunnable() {
         Thread thread = new Thread(new Runnable() {
-            @Override
             public void run() {
                 System.out.println("Поток созданный через интерфейс запустился");
             }
@@ -123,7 +121,6 @@ public class Main {
 
     static void simpleInterruptedThread() throws InterruptedException {
         Thread thread1 = new Thread() {
-            @Override
             public void run() {
                 do {
                     System.out.println("Тик");
